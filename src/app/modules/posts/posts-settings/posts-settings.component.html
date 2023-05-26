@@ -1,4 +1,14 @@
-<h3>User Post Settings</h3>
-<p>Confirmation link - Click to make posting live</p>
-<p>Edit Post</p>
-<button class="btn btn-danger" (click)="deletePost(postId || '')">Delete</button>
+<h2 class="mb-5">User Post Settings</h2>
+<div class="mb-4">
+    <a [routerLink]="['/post/confirmation-page', postId]">
+        Confirmation link - Click to make posting live
+    </a>
+</div>
+<div class="mb-4">
+    <a [routerLink]="['/post/edit', postId]">
+        Click to edit post
+    </a>
+</div>
+<div class="mb-4">
+    <button mat-raised-button color="warn" (click)="deletePost(postId || '')">Delete</button>
+</div>

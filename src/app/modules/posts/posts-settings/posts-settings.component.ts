@@ -18,9 +18,6 @@ export class PostsSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postId = this.route.snapshot.paramMap.get('postId');
-    if (!this.postId) {
-      alert('No id provided');
-    }
   }
 
   deletePost(id: string): void {
