@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar>
+	<a mat-tab-link routerLink="/insights/users" routerLinkActive #insightsUserTab="routerLinkActive" [active]="insightsUserTab.isActive">
+		Users
+	</a>
+	<a mat-tab-link routerLink="/insights/posts" routerLinkActive #insightsPostsTab="routerLinkActive" [active]="insightsPostsTab.isActive">Posts</a>
+
+	<a mat-tab-link routerLink="/insights/misc" routerLinkActive #insightsMiscTab="routerLinkActive" [active]="insightsMiscTab.isActive">Misc</a>
+</nav>
+
+<router-outlet></router-outlet>

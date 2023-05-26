@@ -1,0 +1,32 @@
+<header>
+    <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+        <div class="container">
+        <a class="navbar-brand" [routerLink]="['/home']">
+            <h1 style="margin: 0">Postings</h1>
+        </a>
+        <!-- <button class="btn btn-primary my-2" routerLink="/post/new">Add a New Post</button> -->
+        <button mat-raised-button color="primary" routerLink="/post/new">Add a New Post</button>
+        <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
+            </li> -->
+            </ul>
+            <form class="d-flex">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Search</mat-label>
+                    <input matInput type="text" [(ngModel)]="value" name="search">
+                    <!-- <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button> -->
+                </mat-form-field>
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button> -->
+            </form>
+        </div>
+        </div>
+    </nav>
+</header>

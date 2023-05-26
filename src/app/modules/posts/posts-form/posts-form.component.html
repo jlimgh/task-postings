@@ -1,0 +1,118 @@
+<form class="post-form" autocomplete="off" [formGroup]="postForm" (ngSubmit)="submitForm()">
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
+      <label for="name">Name</label>
+    </div>
+
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger form-control-sm py-2">
+      <div *ngIf="name.errors?.['required']">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control form-control-sm" type="email" id="email" formControlName="email" placeholder="Email" required>
+      <label for="email">Email</label>
+    </div>
+  
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger form-control-sm py-2">
+      <div *ngIf="email.errors?.['required']">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.['minlength']">
+        Email must be at least 3 characters long.
+      </div>
+      <div *ngIf="email.errors?.['email']">
+        Email must be an actual email
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="Phone number (optional)">
+      <label for="phoneNumber">Phone Number (Optional)</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="subject" formControlName="subject" placeholder="Subject" required>
+      <label for="subject">Subject</label>
+    </div>
+
+    <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger form-control-sm py-2">
+      <div *ngIf="subject.errors?.['required']">
+        Subject is required.
+      </div>
+      <div *ngIf="subject.errors?.['minlength']">
+        Subject must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <!-- <input class="form-control" type="text" formControlName="content" placeholder="Content" required> -->
+      <!-- <label for="content">Content</label> -->
+      <textarea class="form-control" id="content"
+        maxlength="500" rows="4" cols="40" 
+        formControlName="content"
+        placeholder="Content"
+        required>
+      </textarea>
+    </div>
+
+    <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger form-control-sm py-2">
+
+      <div *ngIf="content.errors?.['required']">
+        Content is required.
+      </div>
+      <div *ngIf="content.errors?.['minlength']">
+        Content must be at least 5 characters long.
+      </div>
+      <div *ngIf="content.errors?.['atLeast1UpperCase']">
+        Password must contain at least one uppercase letter.
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="number" id="cost" formControlName="cost" placeholder="Cost">
+      <label for="cost">Cost (Optional)</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-control form-control-sm" formControlName="location">
+            <option [ngValue]=null selected>Select</option>
+            <option *ngFor="let data of locationOptions.counties" [ngValue]="data.value">{{data.display}}</option>
+        </select>
+        <label for="location">Location</label>
+    </div>
+    
+    <div *ngIf="location.value" class="form-floating mb-3">
+        <select class="form-control form-control-sm" formControlName="sublocation">
+            <option [ngValue]=null selected>Select</option>
+            <ng-container *ngIf="location.value === 1">
+                <option *ngFor="let data of locationOptions.la" [ngValue]="data.value">{{data.display}}</option>
+            </ng-container>
+            <ng-container *ngIf="location.value === 2">
+                <option *ngFor="let data of locationOptions.oc" [ngValue]="data.value">{{data.display}}</option>
+            </ng-container>
+        </select>
+        <label for="sublocation">Sublocation</label>
+    </div>
+
+    <!-- <div class="mb-3">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" formControlName="location" name="location" id="location-los-angeles" value="los-angeles" required>
+        <label class="form-check-label" for="location-los-angeles">Los Angeles</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" formControlName="location" name="location" id="location-orange-county" value="orange-county">
+        <label class="form-check-label" for="location-orange-county">Orange County</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" formControlName="location" name="location" id="location-riverside"
+          value="riverside">
+        <label class="form-check-label" for="location-riverside">Riverside</label>
+      </div>
+    </div> -->
+
+    <pre> {{ postForm.value | json }}</pre>
+
+    <button class="btn btn-primary px-5" type="submit" [disabled]="postForm.invalid">Add</button>
+  </form>

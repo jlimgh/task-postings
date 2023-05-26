@@ -1,0 +1,64 @@
+<div class="container-fluid post-group">
+    <div>
+        <div class="float-start">
+            <ng-template #popContent>
+                <div class="row">
+                    <div class="col-12">
+                       <label>
+                        Email:
+                       </label>
+                       <div>
+                        testemail443434fldfkdf@gmail.com
+                       </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       <label>
+                        Phone number:
+                       </label>
+                       <div>
+                        562-234-5555
+                       </div>
+                    </div>
+                </div>
+            </ng-template>
+            <button type="button" class="btn btn-outline-secondary" [autoClose]="'outside'" placement="end" [ngbPopover]="popContent">
+                Reply
+            </button>
+        </div>
+        <h2 class="text-center m-5">Post Details</h2>
+    </div>
+    <div *ngIf="post$ | async as post">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="fw-bolder">Date:</label>
+                <p>{{(post?.createdTS | date: 'shortDate') || '-'}}</p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="fw-bolder">Location:</label>
+                <p>{{post?.locationMapped}}</p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="fw-bolder">Subject:</label>
+                <p>{{post?.subject}}</p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="fw-bolder">Content:</label>
+                <p>{{post?.content}}</p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="fw-bolder">Asking:</label>
+                <p>${{post?.cost || 0}}</p>
+            </div>
+        </div>
+    </div>
+</div>
