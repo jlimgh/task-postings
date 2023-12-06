@@ -7,7 +7,7 @@ export interface Post {
     cost?: number;
     location?: number;
     locationMapped?: string;
-    subLocation?: number;
+    sublocation?: number;
     createdTS?: string;
     _id?: string;
 }
