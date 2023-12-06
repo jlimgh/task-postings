@@ -11,6 +11,7 @@ export class PostService {
 
   private posts$: Subject<Post[]> = new Subject();
   private locationPosts$: Subject<Post[]> = new Subject();
+  private subLocationPosts$: Subject<Post[]> = new Subject();
   
   constructor(private httpClient: HttpClient,
               private config: ConfigService) { }
@@ -28,15 +29,27 @@ export class PostService {
         this.locationPosts$.next(posts);
       });
   }
+
+  private refreshSubLocationPosts(sublocationId: any) {
+    this.httpClient.get<Post[]>(`${this.config.BASE_URL}/posts/sublocation/${sublocationId}`)
+      .subscribe(posts => {
+        this.subLocationPosts$.next(posts);
+      });
+  }
   
   getPosts(): Subject<Post[]> {
     this.refreshPosts();
     return this.posts$;
   }
 
-  getLocationPosts(locationId: number): Subject<Post[]> {
+  getLocationPosts(locationId: string): Subject<Post[]> {
     this.refreshLocationPosts(locationId);
     return this.locationPosts$;
+  }
+
+  getSubLocationPosts(sublocationId: string): Subject<Post[]> {
+    this.refreshSubLocationPosts(sublocationId);
+    return this.subLocationPosts$;
   }
   
   getPost(id: string): Observable<Post> {

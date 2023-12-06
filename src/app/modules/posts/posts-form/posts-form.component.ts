@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Post } from '../../../shared/models/post';
 import { LocationOptions } from '../../../shared/lists/location';
 import { AtLeast1UpperCase } from '../../../shared/helpers/at-least-1-uppercase.validator';
+import { LocationEnum } from 'src/app/shared/models/enums';
 
 @Component({
   selector: 'app-posts-form',
@@ -22,6 +23,7 @@ export class PostsFormComponent implements OnInit {
   formSubmitted = new EventEmitter<Post>();
 
   locationOptions = LocationOptions;
+  locationEnum = LocationEnum;
   postForm: FormGroup = new FormGroup({});
   buttonLabel = 'Add';
   

@@ -86,10 +86,10 @@
     <div *ngIf="location.value" class="form-floating mb-3">
         <select class="form-control form-control-sm" formControlName="sublocation">
             <option [ngValue]=null selected>Select</option>
-            <ng-container *ngIf="location.value === 1">
+            <ng-container *ngIf="location.value === locationEnum.LosAngeles">
                 <option *ngFor="let data of locationOptions.la" [ngValue]="data.value">{{data.display}}</option>
             </ng-container>
-            <ng-container *ngIf="location.value === 2">
+            <ng-container *ngIf="location.value === locationEnum.OrangeCounty">
                 <option *ngFor="let data of locationOptions.oc" [ngValue]="data.value">{{data.display}}</option>
             </ng-container>
         </select>

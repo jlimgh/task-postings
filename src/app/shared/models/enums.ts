@@ -1,13 +1,13 @@
 export enum LocationEnum {
-    LosAngeles = 1,
-    OrangeCounty = 2,
-    Riverside = 3
+    LosAngeles = 'los-angeles',
+    OrangeCounty = 'orange-county',
+    Riverside = 'riverside'
 }
 
 export enum SublocationEnum {
-    LaWestside = 1,
-    LaSouthBay = 2,
-    LaLongBeach = 3,
-    OcIrvine = 4,
-    OcHb = 5
+    LaWestside = 'westside',
+    LaSouthBay = 'south-bay',
+    LaLongBeach = 'long-beach',
+    OcIrvine = 'irvine',
+    OcHb = 'huntington-beach'
 }
