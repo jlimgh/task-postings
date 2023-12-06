@@ -23,6 +23,7 @@ export class PostsFormComponent implements OnInit {
 
   locationOptions = LocationOptions;
   postForm: FormGroup = new FormGroup({});
+  buttonLabel = 'Add';
   
   constructor(private fb: FormBuilder) { }
 
@@ -36,7 +37,9 @@ export class PostsFormComponent implements OnInit {
   get cost() { return this.postForm.get('cost')!; }
   
   ngOnInit() {
+    
     this.initialState.subscribe(post => {
+      this.buttonLabel = post.name ? 'Edit' : 'Add';
       this.postForm = this.fb.group({
         name: [ post.name, [Validators.required] ],
         email: [ post.email, [Validators.required, Validators.email] ],
@@ -44,7 +47,7 @@ export class PostsFormComponent implements OnInit {
         subject: [ post.subject, [Validators.required] ],
         content: [ post.content, [ Validators.required, Validators.minLength(5), AtLeast1UpperCase() ] ],
         location: [ post.location, [Validators.required] ],
-        sublocation: [ post.subLocation, [Validators.required] ],
+        sublocation: [ post.sublocation, [Validators.required] ],
         cost: [ post.cost ]
       });
     });
