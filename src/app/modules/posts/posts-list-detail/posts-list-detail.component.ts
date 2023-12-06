@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LocationMapIntToStringLabel } from '../../../shared/models/mappings';
+import { LocationMapStringUrlToStringLabel } from '../../../shared/models/mappings';
 import { Post } from '../../../shared/models/post';
 import { PostService } from '../../../services/post.service';
 @Component({
@@ -33,8 +33,8 @@ export class PostsListDetailComponent implements OnInit {
   private fetchPost(id: string): void {
     this.post$ = this.postService.getPost(id).pipe(
       map(data => {
-        if (LocationMapIntToStringLabel.has(data.location !)) {
-          data['locationMapped'] = LocationMapIntToStringLabel.get(data.location !)
+        if (LocationMapStringUrlToStringLabel.has(data.location !)) {
+          data['locationMapped'] = LocationMapStringUrlToStringLabel.get(data.location !)
         }
         console.log('data: ', data);
         return data;

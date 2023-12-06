@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationOptions } from 'src/app/shared/lists/location';
 
 @Component({
   selector: 'app-home-page',
@@ -12,21 +13,26 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  citiesList = [
+  countyList = [
     {
       name: 'Los Angeles',
       id: 1,
-      routerLink: '/post/location/los-angeles'
+      routerLink: '/post/location/los-angeles/listings',
+      cityId: 'los-angeles',
+      sublocations: LocationOptions.la
     },
     {
       name: 'Orange County',
       id: 2,
-      routerLink: '/post/location/orange-county'
+      routerLink: '/post/location/orange-county/listings',
+      cityId: 'orange-county',
+      sublocations: LocationOptions.oc
     },
     {
       name: 'Riverside',
       id: 3,
-      routerLink: '/post/location/riverside'
+      cityId: 'riversdie',
+      routerLink: '/post/location/riverside/listings'
     }
   ];
 

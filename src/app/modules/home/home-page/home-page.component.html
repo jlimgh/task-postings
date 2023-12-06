@@ -8,8 +8,18 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="list-group">
-                        <a *ngFor="let city of citiesList" [routerLink]="city?.routerLink" class="list-group-item list-group-item-action">{{city?.name}}</a>
+                    <div *ngFor="let county of countyList" class="list-group">
+                        <a [routerLink]="['/post/location', county.cityId, 'listings']" class="list-group-item list-group-item-action">
+                            {{county?.name}}
+                        </a>
+                        <ul>
+                            <li *ngFor="let city of county.sublocations">
+                                <a [routerLink]="['/post/location', county.cityId, city.value, 'listings']"
+                                    class="list-group-item list-group-item-action">
+                                    {{city.display}}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

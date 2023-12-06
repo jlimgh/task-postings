@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from '../../../shared/models/post';
-import { LocationMapStringUrlToStringLabel, LocationMapIntToStringLabel, LocationMapUrlStringToInt } from '../../../shared/models/mappings';
+import { LocationMapStringUrlToStringLabel, LocationMapIntToStringUrl, LocationMapUrlStringToInt } from '../../../shared/models/mappings';
 import { PostService } from '../../../services/post.service';
 
 
@@ -15,8 +15,8 @@ import { PostService } from '../../../services/post.service';
 export class PostsListComponent implements OnInit {
 
   locationId: string | null;
-  locationIdMappedInt: number | undefined;
   locationIdMappedLabel: string | undefined;
+  sublocationId: string | null;
   posts$: Observable<Post[]> = new Observable();
 
   constructor(
@@ -26,13 +26,17 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.locationId = this.route.snapshot.paramMap.get('locationId');
-    this.locationIdMappedInt = LocationMapUrlStringToInt.get(this.locationId !);
     this.locationIdMappedLabel = LocationMapStringUrlToStringLabel.get(this.locationId !);
+    this.sublocationId = this.route.snapshot.paramMap.get('sublocationId');
+
+    console.log('locationId: ', this.locationId);
+    console.log('sublocationId: ', this.sublocationId);
+    console.log('snapshot paramMap: ', this.route.snapshot.paramMap);
     // use locationID number to fetch location data
-    this.fetchLocationPosts(this.locationIdMappedInt !);
+    this.fetchLocationPosts(this.locationId !);
   }
   
-  private fetchLocationPosts(locationId: number): void {
+  private fetchLocationPosts(locationId: string): void {
     this.posts$ = this.postService.getLocationPosts(locationId !);
   }
 

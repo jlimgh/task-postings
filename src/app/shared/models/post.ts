@@ -5,9 +5,9 @@ export interface Post {
     subject?: string;
     content?: string;
     cost?: number;
-    location?: number;
+    location?: string;
     locationMapped?: string;
-    sublocation?: number;
+    sublocation?: string;
     createdTS?: string;
     _id?: string;
 }

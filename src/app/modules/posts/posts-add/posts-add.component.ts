@@ -24,8 +24,7 @@ export class PostsAddComponent implements OnInit {
       .subscribe({
         next: () => {
           console.log('post body: ', post);
-          const mappedLocation = LocationMapIntToStringUrl.get(post.location !);
-          this.router.navigate(['/post/location', mappedLocation]);
+          this.router.navigate(['/post/location', post.location]);
         },
         error: (error) => {
           alert("Failed to create post");
