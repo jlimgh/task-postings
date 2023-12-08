@@ -63,6 +63,10 @@ export class PostService {
   updatePost(id: string, post: Post): Observable<string> {
     return this.httpClient.put(`${this.config.BASE_URL}/posts/${id}`, post, { responseType: 'text' });
   }
+
+  updatePostToBeLive(id: string, post: Post): Observable<string> {
+    return this.httpClient.put(`${this.config.BASE_URL}/posts/toggle-live/${id}`, post, { responseType: 'text' });
+  }
   
   deletePost(id: string): Observable<string> {
     return this.httpClient.delete(`${this.config.BASE_URL}/posts/${id}`, { responseType: 'text' });

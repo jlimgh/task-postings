@@ -9,5 +9,6 @@ export interface Post {
     locationMapped?: string;
     sublocation?: string;
     createdTS?: string;
+    isLive?: boolean;
     _id?: string;
 }
