@@ -1,14 +1,23 @@
 <h2 class="mb-5">User Post Settings</h2>
 <div class="mb-4">
-    <a [routerLink]="['/post/confirmation-page', postId]">
-        Confirmation link - Click to make posting live
-    </a>
-</div>
-<div class="mb-4">
     <a [routerLink]="['/post/edit', postId]">
         Click to edit post
     </a>
 </div>
-<div class="mb-4">
-    <button mat-raised-button color="warn" (click)="deletePost(postId || '')">Delete</button>
-</div>
+<ng-container *ngIf="post$ | async as post">
+    <div class="mb-4">
+        <button [disabled]="post?.isLive" mat-raised-button color="basic" (click)="togglePostPresence(postId || '', true)">Confirm post</button>
+        <span>
+            Click to make posting live
+        </span>
+    </div>
+    <div class="mb-4">
+        <button [disabled]="!post?.isLive" mat-raised-button color="basic" (click)="togglePostPresence(postId || '', false)">Disable post</button>
+        <span>
+            Click to disable live feature
+        </span>
+    </div>
+    <div class="mb-4">
+        <button mat-raised-button color="warn" (click)="deletePost(postId || '')">Delete</button>
+    </div>
+</ng-container>

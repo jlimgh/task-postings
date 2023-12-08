@@ -29,7 +29,7 @@ import { PostSublocationsListComponent } from './post-sublocations-list/post-sub
     NgbModule,
     PostsRoutingModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
 export class PostsModule { }
